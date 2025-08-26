@@ -4,6 +4,7 @@ namespace SampleApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [ApiKeyFilter]
     public class ProductsController : ControllerBase
     {
         private static List<Product> _products = new List<Product>
@@ -13,10 +14,7 @@ namespace SampleApi.Controllers
         };
 
         [HttpGet]
-        public IActionResult GetAllProducts()
-        {
-            return Ok(_products);
-        }
+        public IActionResult GetProducts()=> Ok(_products);
 
         [HttpGet("{id}")]
         public IActionResult GetProduct(int id)
