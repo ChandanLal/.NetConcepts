@@ -14,7 +14,7 @@ namespace SampleApi.Controllers
         };
 
         [HttpGet]
-        public IActionResult GetProducts()=> Ok(_products);
+        public IActionResult GetProducts() => Ok(_products);
 
         [HttpGet("{id}")]
         public IActionResult GetProduct(int id)
@@ -22,6 +22,11 @@ namespace SampleApi.Controllers
             var product = _products.FirstOrDefault(p => p.Id == id);
             if (product == null) return NotFound();
             return Ok(product);
+        }
+        [HttpGet("error")]
+        public IActionResult GetError()
+        {
+            throw new Exception("Something went wrong in the controller!");
         }
     }
 }
